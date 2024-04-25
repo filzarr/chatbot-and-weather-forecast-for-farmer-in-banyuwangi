@@ -6,6 +6,15 @@ bp = Blueprint('main', __name__)
 @bp.route('/')
 def index():
     return render_template('index.html')
+@bp.route('/forecast')
+def forecast():
+    return render_template('forecast.html')
+@bp.route('/chatbot')
+def chatbot():
+    return render_template('chatbot.html')
+@bp.route('/layanan')
+def layanan():
+    return render_template('layanan.html')
 
 @bp.route('/get-answer', methods=['POST'])
 def get_answer():

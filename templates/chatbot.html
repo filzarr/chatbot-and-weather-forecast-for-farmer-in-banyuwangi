@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot | Smart Farmer</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        body{
+            position: relative;
+            background-image: url('/static/images/bg-forecast.jpg');
+            background-size:100%; 
+            background-position: center
+        }
+    </style>
+</head>
+<body  class="">
+    <div class=" absolute top-0 left-0 h-lvh -z-10 w-full bg-stone-950/15"></div>
+    <section class=" px-[60px] py-[10px] " id="navbar">
+        <div class="flex justify-between items-center">
+          <div class="flex gap-3  items-center">
+            <div class="rounded-full bg-white p-3">
+              <img class="w-12" src="{{url_for('static',filename='images/house 1.png')}}" alt="" srcset="">
+            </div>
+            <div class="">
+              <p class=" text-lg font-bold text-gray-700">Smartfarmer</p>
+            </div>
+          </div>
+          <ul class="flex gap-8">
+              <a href="/">
+                <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">About</li>
+              </a>  
+            <a href="/layanan">
+              <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">Layanan</li>
+            </a>  
+            
+            <a href="/forecast">
+                <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">Forecast</li>
+            </a>  
+            <li class="font-semibold text-[#8D8F3E] underline underline-offset-4 decoration-4 decoration-[#8D8F3E]">Chatbot</li>
+          </ul>
+          <div class="flex gap-8">
+            <button class="font-semibold text-[#8D8F3E] hover:bg-[#8D8F3E] transition-all duration-100 ease-in hover:text-gray-100 border-2 border-[#8D8F3E] px-5 py-1">Daftar</button>
+            <button class="font-semibold bg-[#ff992d]   hover:bg-[#8D8F3E] transition-all duration-100 ease-in  text-gray-100 border-2 border-[#8e8f3e00] px-5 py-1">Masuk</button>
+          </div>
+        </div>
+      </section>
+      <section class="px-[60px] py-[10px] " id="content">
+        <div class="w-full flex flex-col justify-center text-center">
+            <p class="text-xl font-bold text-gray-50">Welcome To Chatbot AI</p>
+            <p class="text-lg font-semibold text-gray-50">Having problems in the agricultural sector?</p>
+            <p class="text-sm text-gray-50">Ask us to find a solution to your problem</p>
+        </div>
+        <div class="w-full bg-[#bdbfc277] mt-5">
+            <div class=" h-[450px] pt-4 px-4 overflow-y-scroll " id="message-container">
+                <div class="min-h-fitt space-y-10" id="message-list">
+                   
+                    <!-- <div class="flex items-start gap-2.5 flex-row-reverse">
+                        <img class="w-8 h-8 rounded-full" src="/static/images/avatar.jpg" alt="Jese image">
+                        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                           <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                              <span class="text-sm font-semibold text-gray-900 dark:text-white">You</span>
+                              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
+                           </div>
+                           <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">That's awesome. I think our users will really appreciate the improvements.</p>
+                        </div>
+                     </div>  -->
+                </div>
+            </div>
+            <div class="w-full px-16 flex justify-center py-4">
+                <div class=" px-4 py-2 flex rounded-xl border-2 border-gray-600 bg-white w-1/2 ">
+                    <input type="text" placeholder="Ketikan Apa yang anda ingin tanyakan"  class="flex-grow  focus:border-0 active:border-0 focus:outline-0 active:outline-0" id="question">
+                    <button class="pl-1 pr-1 pt-1 rounded-md border bg-gray-300 ">
+                        <iconify-icon icon="mingcute:send-fill" width="32" height="32"  style="color: #3b8a9b"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+      </section>
+      <script lang="javascript">
+        fetch('/get-answer',{ 
+            method: "POST",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body:JSON.stringify({ question: 'hai' }),  
+        }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+            return response.json(); // Mengembalikan respons dalam bentuk JSON
+        })
+        .then(data => {
+            let currentTime = new Date();
+
+            // Mendapatkan jam, menit, dan detik
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            let seconds = currentTime.getSeconds();
+
+            // Menambahkan nol di depan jika angka kurang dari 10
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            // Menampilkan waktu dalam format HH:mm:ss
+            let timeString = hours + ":" + minutes;
+
+        $("#message-list").append(
+        `              <div class="flex items-start gap-2.5">
+                        <img class="w-8 h-8 rounded-full" src="/static/images/ai.jpg" alt="Jese image">
+                        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                           <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                              <span class="text-sm font-semibold text-gray-900 dark:text-white">AI</span>
+                              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">${timeString}</span>
+                           </div>
+                           <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">${data['body']}</p>
+                        </div>
+                     </div>`
+        ) 
+        })
+        .catch(error => {
+        // Tangani kesalahan jika terjadi
+        console.error('There has been a problem with your fetch operation:', error);
+        });
+        const submit = async (userMessage) => {
+      let a;
+      let response = await fetch("/get-answer",{
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({ question: userMessage }),
+      });
+      console.log(JSON.stringify({ question: userMessage }))
+      response = await response.json();
+      console.log(response);
+      return response;
+    }
+    const populateBotResponse = async (userMessage) => { 
+      let response;
+      let uploadButtonHtml = '';
+
+       
+      response = await submit(userMessage); 
+      let currentTime = new Date();
+
+        // Mendapatkan jam, menit, dan detik
+        let hours = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+        let seconds = currentTime.getSeconds();
+
+        // Menambahkan nol di depan jika angka kurang dari 10
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+
+        // Menampilkan waktu dalam format HH:mm:ss
+        let timeString = hours + ":" + minutes;
+      $("#message-list").append(
+          `<div class="flex items-start gap-2.5">
+                        <img class="w-8 h-8 rounded-full" src="/static/images/ai.jpg" alt="Jese image">
+                        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                           <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                              <span class="text-sm font-semibold text-gray-900 dark:text-white">AI</span>
+                              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">${timeString}</span>
+                           </div>
+                           <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">${response['body']}</p>
+                        </div>
+                     </div>`
+        );
+        
+      scrollToBottom();
+        
+    }
+    $(document).ready(function(){
+      $("#question").keyup(function (event) {
+        let inputVal = cleanTextInput($("#question").val());
+
+        if (event.keyCode === 13 && inputVal != "") {
+          
+          const message = inputVal;
+          populateUserMessage(message, null);
+          populateBotResponse(message); 
+        }
+        inputVal = $("#question").val();
+
+      });
+    })
+    const cleanTextInput = (value) => {
+      return value
+        .trim() // remove starting and ending spaces
+        .replace(/[\n\t]/g, "") // remove newlines and tabs
+        .replace(/<[^>]*>/g, "") // remove HTML tags
+        .replace(/[<>&;]/g, ""); // sanitize inputs
+    };
+    const populateUserMessage = (userMessage, userRecording) => {
+      // Clear the input field
+        $("#question").val("");
+        let currentTime = new Date();
+
+        // Mendapatkan jam, menit, dan detik
+        let hours = currentTime.getHours();
+        let minutes = currentTime.getMinutes();
+        let seconds = currentTime.getSeconds();
+        // Menambahkan nol di depan jika angka kurang dari 10
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+
+        // Menampilkan waktu dalam format HH:mm:ss
+        let timeString = hours + ":" + minutes;
+      // Append the user's message to the message list
+        $("#message-list").append(
+          ` <div class="flex items-start gap-2.5 flex-row-reverse">
+                        <img class="w-8 h-8 rounded-full" src="/static/images/avatar.jpg" alt="Jese image">
+                        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                           <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                              <span class="text-sm font-semibold text-gray-900 dark:text-white">You</span>
+                              <span class="text-sm font-normal text-gray-500 dark:text-gray-400">${timeString}</span>
+                           </div>
+                           <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">${userMessage}</p>
+                        </div>
+                     </div> `
+        );
+
+      scrollToBottom();
+    }; 
+    const scrollToBottom = () => {
+      // Scroll the chat window to the bottom
+      $("#message-container").animate({
+        scrollTop: $("#message-container")[0].scrollHeight,
+      });
+    };
+       
+      </script>
+</body>
+</html>

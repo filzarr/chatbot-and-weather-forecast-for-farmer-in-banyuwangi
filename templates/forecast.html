@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast | Smart Farmer</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        body{
+            position: relative;
+            background-image: url('/static/images/bg-forecast.jpg');
+            background-size:100%; 
+            background-position: center
+        }
+    </style>
+</head>
+<body  class="">
+    <div class=" absolute top-0 left-0 h-lvh -z-10 w-full bg-stone-950/15"></div>
+    <section class=" px-[60px] py-[10px] " id="navbar">
+        <div class="flex justify-between items-center">
+          <div class="flex gap-3  items-center">
+            <div class="rounded-full bg-white p-3">
+              <img class="w-12" src="{{url_for('static',filename='images/house 1.png')}}" alt="" srcset="">
+            </div>
+            <div class="">
+              <p class=" text-lg font-bold text-gray-700">Smartfarmer</p>
+            </div>
+          </div>
+          <ul class="flex gap-8">
+              <a href="/">
+                <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">About</li>
+              </a>  
+            <a href="/layanan">
+              <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">Layanan</li>
+            </a>  
+            <li class="font-semibold text-[#8D8F3E] underline underline-offset-4 decoration-4 decoration-[#8D8F3E]">Forecast</li>
+
+            <a href="/chatbot">
+              <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">Chatbot</li>
+            </a>  
+          </ul>
+          <div class="flex gap-8">
+            <button class="font-semibold text-[#8D8F3E] hover:bg-[#8D8F3E] transition-all duration-100 ease-in hover:text-gray-100 border-2 border-[#8D8F3E] px-5 py-1">Daftar</button>
+            <button class="font-semibold bg-[#ff992d]   hover:bg-[#8D8F3E] transition-all duration-100 ease-in  text-gray-100 border-2 border-[#8e8f3e00] px-5 py-1">Masuk</button>
+          </div>
+        </div>
+      </section>
+      <section class="px-[60px] py-[10px] ">
+        <div class="flex gap-16 items-center  mt-8">
+            <div class="flex flex-col justify-center items-center gap-4">
+                <iconify-icon icon="mdi:city" class="text-gray-50" width="96" height="96"></iconify-icon>
+                <p class="text-7xl font-bold text-gray-50">Banyuwangi</p>
+            </div>
+            <div class="flex-grow flex flex-col gap-4">
+                <div class="w-full bg-[#bdbfc277] px-16 py-3">
+                    <div class="flex gap-4">
+                        <p class="text-xl font-semibold text-gray-50">TODAY</p>
+                        <p class="text-xl font-semibold text-gray-50" id="hari-ini"></p> 
+                    </div>
+                    <div class="mt-8 flex gap-8">
+                        <div class="" id="icon-today">
+                            
+                        </div> 
+                        <div class="flex flex-col gap-4">
+                            <p class="text-xl font-bold text-gray-50">Sunny</p>
+                            <div class="flex gap-2 items-end">
+                                <p class="text-lg font-semibold text-gray-50" ><span id="Tx-today"></span>°C</p>
+                                <p class=" text-sm font-semibold text-gray-50" ><span id="Tn-today"></span>°C</p>
+                            </div>
+                            <div class="">
+                                <p class="text-xl font-bold text-gray-50">Humidity  60%</p>
+                                <p class="text-xl font-bold text-gray-50">Wind Speed  <span id="fx-today"></span>mph SW</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <p class="text-xl font-bold text-gray-50">Banyuwangi, Jawa timur
+                            </p>
+                        <p class="text-lg font-semibold text-gray-50">Indonesia</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-8 justify-center items-center mt-8">
+                    <div class="p-4 bg-[#bdbfc277] flex flex-col justify-center">
+                        <div class="flex justify-center">
+                            <p class="text-xl font-bold text-gray-50">Tomorrow
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="" id="icon-bsk">
+                                <iconify-icon icon="meteocons:overcast-day-hail-fill" width="64" height="64"></iconify-icon>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-end justify-center">
+                            <p class="text-lg font-semibold text-gray-50"><span id="tx-bsk"></span>°C</p>
+                            <p class=" text-sm font-semibold text-gray-50"><span id="tn-bsk"></span>°C</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-[#bdbfc277] flex flex-col justify-center">
+                        <div class="flex justify-center">
+                            <p class="text-xl font-bold text-gray-50" id="tanggalbsklagi">
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="" id="bsklagiicon"> 
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-end justify-center">
+                            <p class="text-lg font-semibold text-gray-50"><span id="txbsklagi"></span>°C</p>
+                            <p class=" text-sm font-semibold text-gray-50"><span id="tnbsklagi"></span>°C</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-[#bdbfc277] flex flex-col justify-center">
+                        <div class="flex justify-center">
+                            <p class="text-xl font-bold text-gray-50" id="tanggalbsklagi2">
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="" id="bsklagi2icon"> 
+                            </div>
+                        </div>
+                        <div class="flex gap-2 items-end justify-center">
+                            <p class="text-lg font-semibold text-gray-50"><span id="txbsklagi2"></span>°C</p>
+                            <p class=" text-sm font-semibold text-gray-50"><span id="tnbsklagi2"></span>°C</p>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+      </section>
+      <script lang="javascript">
+        var data 
+        var hari_ini 
+        var bsk
+        var bsklagi
+        var bsklagi2
+        const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Ditambah 1 karena bulan dimulai dari 0
+        const year = today.getFullYear();
+        const formattedToday = `${day}-${month}-${year}`; 
+        const formattedTomorrow = `${parseInt(day)+1}-${month}-${year}`; 
+        const formattedbsklagi = `${parseInt(day)+2}-${month}-${year}`; 
+        const formattedbsklagi2 = `${parseInt(day)+3}-${month}-${year}`; 
+        const monthName = monthNames[month[1] -1] ;
+        console.log(formattedToday)
+        console.log(formattedTomorrow)
+        function checkicon(tavg){
+            ta = parseInt(tavg)
+            if(ta => 25 )return '<iconify-icon icon="ph:sun-fill" width="64" height="64"  style="color: #F6FB07"></iconify-icon>'
+            else if(ta <25 && ta >=23 ) return '<iconify-icon icon="meteocons:overcast-day-hail-fill" width="64" height="64"></iconify-icon>'
+            else if(ta <23 && ta >=20 ) return '<iconify-icon icon="noto:cloud-with-rain" width="64" height="64"></iconify-icon>'
+            else if(ta <20 ) return '<iconify-icon icon="noto:cloud-with-lightning-and-rain" width="64" height="64"></iconify-icon>'
+            
+        }
+        function isToday(dateString) {
+            return dateString === formattedToday;
+        }
+        function isTomorrow(dateString) {
+            return dateString === formattedTomorrow;
+        }
+        function isbsklagi(dateString) {
+            return dateString === formattedbsklagi;
+        }
+        function isbsklagi2(dateString) {
+            return dateString === formattedbsklagi2;
+        }
+        $.ajax({
+            url: '/weather-forecast/get-data',
+            method: 'GET',
+            success: function(response) { 
+                data = response['body']
+                data.forEach(entry => { 
+                    // Memeriksa apakah tanggalnya hari ini
+                    if (isToday(entry.Tanggal)) {
+                        hari_ini = entry 
+                    }
+                    if (isTomorrow(entry.Tanggal)) {
+                        bsk = entry 
+                    }
+                    if (isbsklagi(entry.Tanggal)) {
+                        bsklagi = entry 
+                    }
+                    if (isbsklagi2(entry.Tanggal)) {
+                        bsklagi2 = entry 
+                    }
+                });
+                var icon_today = checkicon(hari_ini['Tavg']) 
+                $("#icon-today").html(icon_today)
+                $("#hari-ini").append(
+                    `${day} ${monthName} ${year}`
+                )
+                var tn = parseInt(hari_ini['Tn'])
+                $("#Tn-today").html(tn)
+                var tx = parseInt(hari_ini['Tx'])
+                $("#Tx-today").html(tx) 
+                var fx = parseInt(hari_ini['ff_x'])
+                $("#fx-today").html(fx) 
+                var icon_bsk = checkicon(bsk['Tavg']) 
+                $("#icon-bsk").html(icon_bsk)
+                var tn_bsk = parseInt(bsk['Tn'])
+                $("#tn-bsk").html(tn_bsk)
+                var tx_bsk = parseInt(hari_ini['Tx'])
+                $("#tx-bsk").html(tx)  
+                
+                $("#tanggalbsklagi").append(
+                    `${parseInt(day)+2} ${monthName} ${year}`
+                )
+                var icon_bsk_lagi = checkicon(bsklagi['Tavg']) 
+                $("#bsklagiicon").html(icon_bsk_lagi)
+                var tn_bsklagi = parseInt(bsklagi['Tn'])
+                $("#tnbsklagi").html(tn_bsklagi)
+                var tx_bsklagi = parseInt(bsklagi['Tx'])
+                $("#txbsklagi").html(tx_bsklagi)  
+                $("#tanggalbsklagi2").append(
+                    `${parseInt(day)+3} ${monthName} ${year}`
+                )
+                var icon_bsk_lagi2 = checkicon(bsklagi2['Tavg']) 
+                $("#bsklagi2icon").html(icon_bsk_lagi2)
+                var tn_bsklagi2 = parseInt(bsklagi2['Tn'])
+                $("#tnbsklagi2").html(tn_bsklagi2)
+                var tx_bsklagi2 = parseInt(bsklagi2['Tx'])
+                $("#txbsklagi2").html(tx_bsklagi2)  
+                
+            },
+            error: function(xhr, status, error) {
+                // Handle error jika terjadi
+            }
+        }); 
+ 
+       
+      </script>
+</body>
+</html>

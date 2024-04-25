@@ -1,0 +1,93 @@
+.<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan | Smart Farmer</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-[#ECDCB2] to-[#4b4b5987]">
+  <section class=" px-[60px] py-[10px]" id="navbar">
+    <div class="flex justify-between items-center">
+      <div class="flex gap-3  items-center">
+        <div class="rounded-full bg-white p-3">
+          <img class="w-12" src="{{url_for('static',filename='images/house 1.png')}}" alt="" srcset="">
+        </div>
+        <div class="">
+          <p class=" text-lg font-bold text-gray-700">Smartfarmer</p>
+        </div>
+      </div>
+      <ul class="flex gap-8">
+        <a href="/">
+            <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">About</li>
+          </a>  
+        <li class="font-semibold text-[#8D8F3E] underline underline-offset-4 decoration-4 decoration-[#8D8F3E]">Layanan</li>
+
+        <a href="/forecast">
+          <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">Forecast</li>
+        </a>  
+        <a href="/chatbot">
+          <li class="font-semibold text-gray-600 transition-all duration-100 ease-in hover:text-[#8D8F3E] hover:underline underline-offset-4 hover:decoration-4 hover:decoration-[#8D8F3E]">Chatbot</li>
+        </a>  
+      </ul>
+      <div class="flex gap-8">
+        <button class="font-semibold text-[#8D8F3E] hover:bg-[#8D8F3E] transition-all duration-100 ease-in hover:text-gray-100 border-2 border-[#8D8F3E] px-5 py-1">Daftar</button>
+        <button class="font-semibold bg-[#ff992d]   hover:bg-[#8D8F3E] transition-all duration-100 ease-in  text-gray-100 border-2 border-[#8e8f3e00] px-5 py-1">Masuk</button>
+      </div>
+    </div>
+  </section>
+  <section class=" px-[60px] py-[20px] mt-8" id="content"> 
+    <div class="">
+        <p class=" text-[#272800] font-bold text-5xl text-center">Layanan Kami</p>
+        <p class="text-gray-800 text-lg font-semibold mt-3 text-center">Smart Farm hadir menjadi solusi bagi kamu</p>
+    </div>
+    <div class="px-8">
+        <div class="grid grid-cols-3 gap-8">
+            <div class=" group transition-all duration-100 ease-in hover:bg-[#72740A] bg-white rounded-md p-4 py-16 flex flex-col gap-4">
+                <div class="flex justify-center">
+                    <div class="rounded-full group-hover:bg-white bg-[#72740A] p-3">
+                        <img class="w-12" src="{{url_for('static',filename='images/house 1.png')}}" alt="" srcset="">
+                      </div>
+                </div>
+                <div class="">
+                    <p class="text-center text-xl font-semibold group-hover:text-white text-[#3E3F05]">Chat Bot AI</p>
+                    <p class="text-gray-800 mt-3 group-hover:text-white text-sm text-center">Sewa rumah yang indah untuk keluarga 
+                        anda, pilihan terbaik untuk tempat 
+                        tinggal keluarga mu.</p>
+                </div>
+            </div>
+            <div class=" group transition-all duration-100 ease-in hover:bg-[#72740A] bg-white rounded-md p-4 py-16 flex flex-col gap-4">
+                <div class="flex justify-center">
+                    <div class="rounded-full group-hover:bg-white bg-[#72740A] p-3">
+                        <img class="w-12" src="{{url_for('static',filename='images/house 1.png')}}" alt="" srcset="">
+                      </div>
+                </div>
+                <div class="">
+                    <p class="text-center text-xl font-semibold group-hover:text-white text-[#3E3F05]">Chat Bot AI</p>
+                    <p class="text-gray-800 mt-3 group-hover:text-white text-sm text-center">Sewa rumah yang indah untuk keluarga 
+                        anda, pilihan terbaik untuk tempat 
+                        tinggal keluarga mu.</p>
+                </div>
+            </div>
+            <div class=" group transition-all duration-100 ease-in hover:bg-[#72740A] bg-white rounded-md p-4 py-16 flex flex-col gap-4">
+                <div class="flex justify-center">
+                    <div class="rounded-full group-hover:bg-white bg-[#72740A] p-3">
+                        <img class="w-12" src="{{url_for('static',filename='images/house 1.png')}}" alt="" srcset="">
+                      </div>
+                </div>
+                <div class="">
+                    <p class="text-center text-xl font-semibold group-hover:text-white text-[#3E3F05]">Chat Bot AI</p>
+                    <p class="text-gray-800 mt-3 group-hover:text-white text-sm text-center">Sewa rumah yang indah untuk keluarga 
+                        anda, pilihan terbaik untuk tempat 
+                        tinggal keluarga mu.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+ 
+</body>
+</html>
